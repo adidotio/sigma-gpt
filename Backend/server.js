@@ -7,7 +7,7 @@ import chatRoutes from './routes/chat.js';
 
 // App and Port
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT;
 
 
 // Middleware
