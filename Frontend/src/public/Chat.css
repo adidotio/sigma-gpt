@@ -1,0 +1,69 @@
+/* Chat container */
+.chats {
+    width: 700px;
+    margin: 0 auto;               
+    height: calc(100vh - 200px);  
+    padding: 24px 0; 
+    overflow-y: auto;           
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Scrollbar (modern, subtle) */
+.chats::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chats::-webkit-scrollbar-thumb {
+    background-color: #3a3a3a;
+    border-radius: 10px;
+}
+
+.chats::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Message container */
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* USER MESSAGE (right bubble) */
+.userDiv {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.userMessage {
+    max-width: 65%;
+    padding: 12px 16px;
+    background-color: #323232;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ffffff;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+/* GPT MESSAGE (left text block) */
+.gptDiv {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.gptMessage {
+    max-width: 75%;
+    padding: 4px 2px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #e5e7eb;
+    white-space: pre-wrap;   
+}
+
+.hljs{
+    border-radius: 14px;
+}

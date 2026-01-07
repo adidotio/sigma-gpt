@@ -1,0 +1,135 @@
+.chatwindow{
+    height: 100vh;
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Navbar */
+.chat-nav{
+    height: 7vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chat-logo{
+    height: fit-content;
+    width: 150px;
+    margin: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.profile{
+    font-size: 26px;
+    margin: 20px;
+    cursor: pointer;
+    height: fit-content;
+}
+
+
+/* Chats */
+
+
+
+/* Input Section */
+.user-area{
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-area p{
+    font-size: 12px;
+}
+
+.user-input{
+    display: flex;
+    align-items: center;
+}
+
+.user-input input{
+    height: 50px;
+    width: 700px;
+    background-color: #303030;
+    border-radius: 30px;
+    border: none;
+    padding: 0 18px;
+    line-height: 50px;
+    font-size: 15px;
+    text-align: left;
+    /* box-shadow: 
+        0 1px 2px rgba(255, 255, 255, 0.05),
+        0 8px 24px rgba(0, 0, 0, 0.6); */
+    outline: none;                 /* removes focus outline */
+    border: none;                  /* ensure no border */
+    box-shadow: none;              /* remove browser glow */
+    -webkit-appearance: none;      /* Chrome/Safari fix */
+    appearance: none;
+}
+
+.user-input i{
+    font-size: 20px;
+    position: relative;
+    right: 57px;
+    color: rgb(207, 207, 207);
+}
+
+.user-input i:hover{
+    color: #fff;
+}
+
+.dropdown {
+    position: absolute;
+    top: 64px;          /* adjust later */
+    right: 20px;        /* align near profile icon */
+
+    width: 260px;
+    background-color: #1f1f1f;
+
+    border-radius: 12px;
+    padding: 6px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+
+    z-index: 1000;
+}
+
+.dropdown .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 12px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    color: #e5e7eb;
+
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.dropdown .item:hover {
+    background-color: #2a2a2a;
+}
+
+.dropdown .item i {
+    width: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #9ca3af;
+}
