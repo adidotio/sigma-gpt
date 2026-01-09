@@ -5,7 +5,7 @@ import { useContext, useState, useEffect } from 'react';
 import {ScaleLoader}  from 'react-spinners';
 
 function ChatWindow(){
-    let {prompt, setPrompt, reply, setReply, currThreadId, prevChats, setPrevChats, setNewChat } = useContext(MyContext);
+    let {prompt, setPrompt, reply, setReply, currThreadId, prevChats, setPrevChats, setNewChat, theme, toggleTheme } = useContext(MyContext);
     let [loading, setLoading] = useState(false);
     let [isOpen, isSetOpen] = useState(false);
 
@@ -63,7 +63,12 @@ function ChatWindow(){
             <span className='chat-logo'>
                 <div>SigmaGPT <i className="fa-solid fa-angle-down"></i></div>
             </span>
-            <span className="profile" onClick={handleProfileClick}><i className="fa-solid fa-user"></i></span>
+            <span className='theme-and-profile'>
+                <span className="theme-toggle" onClick={toggleTheme} title="Toggle theme">
+                    <i className={`fa-solid ${theme === "dark" ? "fa-sun" : "fa-moon"}`}></i>
+                </span>
+                <span className="profile" onClick={handleProfileClick}><i className="fa-solid fa-user"></i></span>
+            </span>
         </div>
         <div>
             {

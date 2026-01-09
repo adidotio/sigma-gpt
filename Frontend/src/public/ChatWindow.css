@@ -32,6 +32,23 @@
     height: fit-content;
 }
 
+.theme-toggle{
+    font-size: 25px;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(-30deg);
+}
+
+.theme-and-profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /* Chats */
 
@@ -59,7 +76,7 @@
 .user-input input{
     height: 50px;
     width: 700px;
-    background-color: #303030;
+    background-color: var(--input-box);
     border-radius: 30px;
     border: none;
     padding: 0 18px;
@@ -80,56 +97,46 @@
     font-size: 20px;
     position: relative;
     right: 57px;
-    color: rgb(207, 207, 207);
+    color: var(--send-prompt);
 }
 
 .user-input i:hover{
-    color: #fff;
+    color: var(--send-prompt-hover);
 }
 
 .dropdown {
     position: absolute;
-    top: 64px;          /* adjust later */
-    right: 20px;        /* align near profile icon */
-
+    top: 64px;          
+    right: 20px;        
     width: 260px;
-    background-color: #1f1f1f;
-
+    background-color: var(--dropdown-bg-color);
     border-radius: 12px;
     padding: 6px;
-
     display: flex;
     flex-direction: column;
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(255, 255, 255, 0.05);
-
     z-index: 1000;
+    border: 2px solid var(--dropdown-border-color);
 }
 
 .dropdown .item {
     display: flex;
     align-items: center;
     gap: 12px;
-
     padding: 10px 12px;
     border-radius: 8px;
-
     font-size: 14px;
-    color: #e5e7eb;
-
+    color: var(--text-color);
     cursor: pointer;
     transition: background 0.15s ease;
 }
 
 .dropdown .item:hover {
-    background-color: #2a2a2a;
+    background-color: var(--dropdown-hover-bg-color);
 }
 
 .dropdown .item i {
     width: 16px;
     text-align: center;
     font-size: 14px;
-    color: #9ca3af;
+    color: var(--dropdown-icon-color);
 }

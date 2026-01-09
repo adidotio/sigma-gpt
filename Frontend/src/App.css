@@ -1,15 +1,22 @@
 *{
-    color: #ececec;
+    color: var(--text-color);
     font-family: 'Inter', sans-serif;
     overflow: hidden;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        fill 0.25s ease;
 }
 
 body{
     margin: 0;
     padding: 0;
+    transition: background-color 0.3s ease;
 }
 
 .main{
-    background-color: #212121;
+    background-color: var(--bg-color);
     display: flex;
+    transition: background-color 0.3s ease;
 }

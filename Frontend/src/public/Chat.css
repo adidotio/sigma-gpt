@@ -40,11 +40,11 @@
 .userMessage {
     max-width: 65%;
     padding: 12px 16px;
-    background-color: #323232;
+    background-color: var(--user-message-bg);
     border-radius: 16px;
     font-size: 14px;
     line-height: 1.5;
-    color: #ffffff;
+    color: var(--text-color);
     word-wrap: break-word;
     text-align: center;
 }
@@ -60,7 +60,7 @@
     padding: 4px 2px;
     font-size: 14px;
     line-height: 1.6;
-    color: #e5e7eb;
+    color: var(--text-color);
     white-space: pre-wrap;   
 }
 

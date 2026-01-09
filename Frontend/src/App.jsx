@@ -1,12 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Sidebar from './Sidebar.jsx';
 import ChatWindow from './ChatWindow.jsx';
 import { MyContext } from './MyContext.jsx';
 import {v1 as uuidv1} from 'uuid';
+import './index.css';
 
 
 function App() {
+  let [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light"
+  );
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "light" ? "dark" : "light"));
+  };
+
   let [prompt, setPrompt] = useState("");
   let [reply, setReply] = useState(null);
   let [currThreadId, setCurrThreadId] = useState(uuidv1());
@@ -20,7 +34,9 @@ function App() {
     currThreadId, setCurrThreadId,
     prevChats, setPrevChats,
     newChat, setNewChat,
-    allThreads, setAllThreads
+    allThreads, setAllThreads,
+    theme,
+    toggleTheme
   };
 
   return (

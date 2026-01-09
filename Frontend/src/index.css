@@ -1,0 +1,31 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --user-message-bg: #f4f4f5;
+  --input-box: #f1f1f1;
+  --send-prompt: #1f1f1f;
+  --dropdown-bg-color: #ffffff;
+  --dropdown-hover-bg-color: #f3f4f6;
+  --dropdown-icon-color: #4b5563;
+  --sidebar-bg-color: #f9fafb;
+  --sidebar-hover-bg-color: #f1f5f9;
+  --delete-chat-color: #f87171;
+  --send-prompt-hover: #9ca3af;
+  --dropdown-border-color: rgb(209, 209, 209);
+}
+
+[data-theme="dark"] {
+  --bg-color: #212121;
+  --text-color: #ececec;
+  --user-message-bg: #323232;
+  --input-box: #303030;
+  --send-prompt: rgb(207, 207, 207);
+  --dropdown-bg-color: #1f1f1f;
+  --dropdown-hover-bg-color: #2a2a2a;
+  --dropdown-icon-color: #9ca3af;
+  --sidebar-bg-color: #171717;
+  --sidebar-hover-bg-color: #212121;
+  --delete-chat-color: #f87171;
+  --send-prompt-hover: #fff;
+  --dropdown-border-color: rgb(44, 44, 44);
+}

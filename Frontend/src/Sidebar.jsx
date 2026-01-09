@@ -5,7 +5,7 @@ import {v1 as uuidv1} from 'uuid';
 
 
 function Sidebar(){
-    const {allThreads, setAllThreads, currThreadId, newChat, setNewChat, setPrompt, setReply, setCurrThreadId, setPrevChats} = useContext(MyContext);
+    const {allThreads, setAllThreads, currThreadId, newChat, setNewChat, setPrompt, setReply, setCurrThreadId, setPrevChats, theme} = useContext(MyContext);
 
     const getAllThreads = async() => {
         try{
@@ -63,9 +63,12 @@ function Sidebar(){
         }
     };
 
+    const logoSrc = theme === "dark" ? "src/assets/blacklogo.png": "src/assets/whitelogo.png";
+
+
     return <div className='sidebar'>
         <section className='sidebar-nav'>
-            <img src="src/assets/blacklogo.png" alt="logo" className='logo' />
+            <img src={logoSrc} alt="logo" className='logo' />
             <i className="fa-solid fa-pen-to-square new-chat" onClick={createNewChat}></i>
         </section>
         <section className='history'>
