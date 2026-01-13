@@ -1,13 +1,14 @@
 /* Chat container */
 .chats {
     width: 700px;
-    margin: 0 auto;               
-    height: calc(100vh - 200px);  
+    margin: 0 auto;                 
     padding: 24px 0; 
     overflow-y: auto;           
     display: flex;
     flex-direction: column;
     gap: 18px;
+    flex: 1;
+    min-height: 0;
 }
 
 /* Scrollbar (modern, subtle) */

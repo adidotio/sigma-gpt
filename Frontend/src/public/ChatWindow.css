@@ -3,7 +3,7 @@
     width: 85vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-shrink: 0;
 }
 
 .chat-logo{
@@ -47,6 +48,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 13px;
+}
+
+.auth-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-left: 10px;
+  margin-right: 20px;
+  font-size: 17px;
+  color: #9ca3af;
+}
+
+.auth-links span {
+  cursor: pointer;
+}
+
+.auth-links span:hover {
+  color: #e5e7eb;
+}
+
+.divider {
+  opacity: 0.4;
 }
 
 
@@ -62,6 +87,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .user-area p{

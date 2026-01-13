@@ -4,19 +4,28 @@ import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
 import chatRoutes from './routes/chat.js';
+import cookieParser from "cookie-parser";
+import authRoutes from "./routes/auth.js";
 
 // App and Port
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 
 // Middleware
+app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 
 // Routes
 app.use("/api", chatRoutes);
+app.use("/api/auth", authRoutes);
 
 
 // Connecting Mongodb

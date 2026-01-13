@@ -1,0 +1,102 @@
+.auth-container {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card {
+  width: 380px;
+  background: #111;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  color: #fff;
+}
+
+.auth-card h1 {
+  margin-bottom: 0.3rem;
+  font-size: 2rem;
+}
+
+.subtitle {
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #222;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.auth-card input::placeholder {
+  color: #777;
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  border: none;
+  background: #4f9cff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth-card button:hover {
+  background: #3b82f6;
+}
+
+.auth-card button:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.toggle {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.toggle span {
+  color: #4f9cff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.toggle span:hover {
+  text-decoration: underline;
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.15);
+  color: #ff6b6b;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}

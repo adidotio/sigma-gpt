@@ -1,6 +1,10 @@
 import { createContext } from "react";
 
 export const MyContext = createContext({
-  theme: "light",
-  toggleTheme: () => {}
-})
+  isAuth: false,
+  setIsAuth: () => {},
+  showAuth: false,
+  setShowAuth: () => {},
+  user: null,
+  setUser: () => {}
+});

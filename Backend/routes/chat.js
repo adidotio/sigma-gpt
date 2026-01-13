@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import Thread from "../models/Thread.js";
 import getGeminiResponse from "../utils/geminiRes.js";
+import authMiddleware from '../middlewares/authMiddleware.js'
 
 // Test Route
 router.post("/test", async (req, res) => {
@@ -20,7 +21,7 @@ router.post("/test", async (req, res) => {
 });
 
 // Get all the threads
-router.get("/thread", async (req, res) => {
+router.get("/thread", authMiddleware, async (req, res) => {
   try {
     const threads = await Thread.find({}).sort({ updated_at: -1 }); // get threads in descending order
     res.json(threads);
@@ -96,22 +97,6 @@ router.post("/chat", async (req, res) => {
         error: "Failed to generate response",
       });
     }
-
-      // Retry ONLY if model is overloaded
-        // if (err.message?.includes("overloaded") || err.status === 503) {
-        //     console.log("Model overloaded. Retrying once...");
-
-        //     // wait 1.5 seconds
-        //     await new Promise((resolve) => setTimeout(resolve, 1500));
-
-        //     try {
-        //         aiReply = await getGeminiResponse(message);
-        //     } catch (retryErr) {
-        //         return res.status(503).json({
-        //             error: "Model is overloaded. Please try again in a moment.",
-        //         });
-        //     }
-        // } else {
 
     thread.messages.push({ roles: "assistant", content: aiReply });
     thread.updated_at = new Date();

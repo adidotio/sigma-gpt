@@ -1,19 +1,64 @@
 import './public/ChatWindow.css'
 import Chat from './Chat.jsx';
 import { MyContext } from './MyContext.jsx';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import {ScaleLoader}  from 'react-spinners';
 
 function ChatWindow(){
-    let {prompt, setPrompt, reply, setReply, currThreadId, prevChats, setPrevChats, setNewChat, theme, toggleTheme } = useContext(MyContext);
+    let {prompt, setPrompt, reply, setReply, currThreadId, prevChats, setPrevChats, setNewChat, theme, toggleTheme, setIsAuth, isAuth, setShowAuth, authChecked} = useContext(MyContext);
     let [loading, setLoading] = useState(false);
     let [isOpen, isSetOpen] = useState(false);
 
+    const dropdownRef = useRef(null);
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if(
+                dropdownRef.current &&
+                !dropdownRef.current.contains(e.target)
+            ){
+                isSetOpen(false);
+            }
+        };
+
+        if(isOpen){
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
+
+    useEffect(() => {
+        const handleEscape = (e) => {
+            if(e.key === "Escape"){
+                isSetOpen(false);
+            }
+        };
+
+        if(isOpen){
+            document.addEventListener("keydown", handleEscape);
+        }
+
+        return () => {
+            document.removeEventListener("keydown", handleEscape);
+        };
+    }, [isOpen]);
+
+
     const getReply = async() => {
+        if (!authChecked) return;
+
+        if(!isAuth){
+            setShowAuth(true);
+            return;
+        }
+
         setLoading(true);
         setNewChat(false);
         const options = {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -54,25 +99,49 @@ function ChatWindow(){
         setPrompt("");
     }, [reply]);
 
+
     const handleProfileClick = () => {
         isSetOpen(!isOpen);
-    }
+    };
+
+
+    const logout = async() => {
+        await fetch("http://localhost:8080/api/auth/logout", {
+            method: "POST",
+            credentials: "include"
+        });
+
+        setIsAuth(false);
+        isSetOpen(false);
+    };
 
     return <div className='chatwindow'>
         <div className="chat-nav">
             <span className='chat-logo'>
                 <div>SigmaGPT <i className="fa-solid fa-angle-down"></i></div>
             </span>
-            <span className='theme-and-profile'>
-                <span className="theme-toggle" onClick={toggleTheme} title="Toggle theme">
+            <span className="theme-and-profile">
+                <span className="theme-toggle" onClick={toggleTheme}>
                     <i className={`fa-solid ${theme === "dark" ? "fa-sun" : "fa-moon"}`}></i>
                 </span>
-                <span className="profile" onClick={handleProfileClick}><i className="fa-solid fa-user"></i></span>
+
+                {authChecked && !isAuth ? (
+                    <span className="auth-links">
+                    <span onClick={() => setShowAuth(true)}>Login</span>
+                    <span className="divider">|</span>
+                    <span onClick={() => setShowAuth(true)}>Sign up</span>
+                    </span>
+                ) : isAuth && (
+                    <span className="profile" onClick={handleProfileClick}>
+                    <i className="fa-solid fa-user"></i>
+                    </span>
+                )}
             </span>
+
         </div>
         <div>
             {
-                isOpen && <div className="dropdown">
+                isOpen && <div className="dropdown" ref={dropdownRef}>
                     <div className="item">
                         <i className="fa-solid fa-info"></i>Your Profile
                     </div>
@@ -82,7 +151,7 @@ function ChatWindow(){
                     <div className="item">
                         <i className="fa-solid fa-gear"></i>Settings
                     </div>
-                    <div className="item">
+                    <div className="item" onClick={logout}>
                         <i className="fa-solid fa-right-from-bracket"></i>Log Out
                     </div>
                 </div>
