@@ -44,43 +44,45 @@ function Chat() {
   }, [prevChats, latestReply]);
 
   return (
-    <>
-        {newChat && <h1>Start a new chat</h1>}
-        <div className="chats">
-            <div className='chat-body'>
-                {
-                    prevChats?.slice(0, -1).map((chat, idx) => 
-                        <div className={chat.roles === "user" ? "userDiv" : "gptDiv"} key={idx}>
-                            {
-                                chat.roles === "user" ? 
-                                <div className='userMessage'>{chat.content}</div> : 
-                                <ReactMarkdown rehypePlugins={rehypeHighlight}>{chat.content}</ReactMarkdown>
-                            }
-                        </div>
-                    )
-                }
-
-                {
-                    prevChats.length > 0 && latestReply !== null && 
-                    <div className="gptDiv" key={"typing"}>
-                        <div className="gptMessage">
-                            <ReactMarkdown rehypePlugins={rehypeHighlight}>{latestReply}</ReactMarkdown>
-                        </div>
-                    </div>
-                }
-
-                {
-                    prevChats.length > 0 && latestReply == null && 
-                    <div className="gptDiv" key={"typing"}>
-                        <div className="gptMessage">
-                            <ReactMarkdown rehypePlugins={rehypeHighlight}>{prevChats[prevChats.length-1].content}</ReactMarkdown>
-                        </div>
-                    </div>
-                }
+    <div className="chats">
+        {newChat && (
+            <div className="welcome-state">
+                <p className="welcome-title">What can I help with?</p>
             </div>
-            <div ref={bottomRef} />
+        )}
+        <div className='chat-body'>
+            {
+                prevChats?.slice(0, -1).map((chat, idx) => 
+                    <div className={chat.roles === "user" ? "userDiv" : "gptDiv"} key={idx}>
+                        {
+                            chat.roles === "user" ? 
+                            <div className='userMessage'>{chat.content}</div> : 
+                            <ReactMarkdown rehypePlugins={rehypeHighlight}>{chat.content}</ReactMarkdown>
+                        }
+                    </div>
+                )
+            }
+
+            {
+                prevChats.length > 0 && latestReply !== null && 
+                <div className="gptDiv" key={"typing"}>
+                    <div className="gptMessage">
+                        <ReactMarkdown rehypePlugins={rehypeHighlight}>{latestReply}</ReactMarkdown>
+                    </div>
+                </div>
+            }
+
+            {
+                prevChats.length > 0 && latestReply == null && 
+                <div className="gptDiv" key={"typing"}>
+                    <div className="gptMessage">
+                        <ReactMarkdown rehypePlugins={rehypeHighlight}>{prevChats[prevChats.length-1].content}</ReactMarkdown>
+                    </div>
+                </div>
+            }
         </div>
-    </>
+        <div ref={bottomRef} />
+    </div>
   );
 }
 

@@ -1,158 +1,182 @@
-.chatwindow{
+/* ── Chat Window Shell ── */
+.chatwindow {
     height: 100vh;
     width: 85vw;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: stretch;
     overflow: hidden;
     min-height: 0;
 }
 
 
-/* Navbar */
-.chat-nav{
-    height: 7vh;
+/* ── Navbar ── */
+.chat-nav {
+    height: 56px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     flex-shrink: 0;
+    padding: 0 6px;
+    border-bottom: 1px solid var(--dropdown-border-color);
 }
 
-.chat-logo{
+.chat-logo {
     height: fit-content;
-    width: 150px;
-    margin: 20px;
-    font-size: 20px;
+    width: auto;
+    padding: 0 16px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
     cursor: pointer;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.profile{
-    font-size: 26px;
-    margin: 20px;
+.chat-logo i {
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+.profile {
+    font-size: 18px;
     cursor: pointer;
     height: fit-content;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
 }
 
-.theme-toggle{
-    font-size: 25px;
+.profile:hover {
+    opacity: 1;
+}
+
+.theme-toggle {
+    font-size: 17px;
     cursor: pointer;
     color: var(--text-color);
-    transition: transform 0.3s ease;
+    opacity: 0.7;
+    transition: transform 0.3s ease, opacity 0.2s ease;
 }
 
 .theme-toggle:hover {
-  transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    opacity: 1;
 }
 
-.theme-and-profile{
+.theme-and-profile {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 13px;
+    gap: 10px;
+    padding-right: 14px;
 }
 
 .auth-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-left: 10px;
-  margin-right: 20px;
-  font-size: 17px;
-  color: #9ca3af;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13.5px;
+    color: #9ca3af;
 }
 
 .auth-links span {
-  cursor: pointer;
+    cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .auth-links span:hover {
-  color: #e5e7eb;
+    color: var(--text-color);
 }
 
 .divider {
-  opacity: 0.4;
+    opacity: 0.35;
 }
 
 
-/* Chats */
-
-
-
-/* Input Section */
-.user-area{
-    height: 10vh;
+/* ── Input Section ── */
+.user-area {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-shrink: 0;
+    padding: 14px 0 10px;
+    gap: 6px;
 }
 
-.user-area p{
-    font-size: 12px;
+.user-area p {
+    font-size: 11px;
+    opacity: 0.45;
+    margin: 0;
 }
 
-.user-input{
+.user-input {
     display: flex;
     align-items: center;
+    width: min(680px, 88%);
+    position: relative;
 }
 
-.user-input input{
-    height: 50px;
-    width: 700px;
+.user-input input {
+    width: 100%;
+    height: 46px;
     background-color: var(--input-box);
     border-radius: 30px;
+    padding: 0 50px 0 18px;
+    font-size: 14px;
+    line-height: 46px;
+    outline: none;
     border: none;
-    padding: 0 18px;
-    line-height: 50px;
-    font-size: 15px;
-    text-align: left;
-    /* box-shadow: 
-        0 1px 2px rgba(255, 255, 255, 0.05),
-        0 8px 24px rgba(0, 0, 0, 0.6); */
-    outline: none;                 /* removes focus outline */
-    border: none;                  /* ensure no border */
-    box-shadow: none;              /* remove browser glow */
-    -webkit-appearance: none;      /* Chrome/Safari fix */
+    box-shadow: none;
+    -webkit-appearance: none;
     appearance: none;
+    color: var(--text-color);
 }
 
-.user-input i{
-    font-size: 20px;
-    position: relative;
-    right: 57px;
+.user-input i {
+    font-size: 16px;
+    position: absolute;
+    right: 18px;
     color: var(--send-prompt);
+    cursor: pointer;
+    transition: color 0.2s ease;
 }
 
-.user-input i:hover{
+.user-input i:hover {
     color: var(--send-prompt-hover);
 }
 
+
+/* ── Profile Dropdown ── */
 .dropdown {
     position: absolute;
-    top: 64px;          
-    right: 20px;        
-    width: 260px;
+    top: 60px;
+    right: 16px;
+    width: 230px;
     background-color: var(--dropdown-bg-color);
     border-radius: 12px;
-    padding: 6px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     z-index: 1000;
-    border: 2px solid var(--dropdown-border-color);
+    border: 1px solid var(--dropdown-border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .dropdown .item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 12px;
+    gap: 10px;
+    padding: 9px 11px;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13.5px;
     color: var(--text-color);
     cursor: pointer;
     transition: background 0.15s ease;
@@ -163,8 +187,8 @@
 }
 
 .dropdown .item i {
-    width: 16px;
+    width: 15px;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--dropdown-icon-color);
 }
