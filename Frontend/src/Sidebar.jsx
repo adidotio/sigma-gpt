@@ -6,6 +6,9 @@ import {v1 as uuidv1} from 'uuid';
 
 function Sidebar(){
     const {allThreads, setAllThreads, currThreadId, newChat, setNewChat, setPrompt, setReply, setCurrThreadId, setPrevChats, theme} = useContext(MyContext);
+    
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const getAllThreads = async() => {
         try{
@@ -72,19 +75,35 @@ function Sidebar(){
 
     const logoSrc = theme === "dark" ? "src/assets/blacklogo.png": "src/assets/whitelogo.png";
 
+    // Filter threads based on search query
+    const filteredThreads = allThreads.filter(thread => 
+        thread.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return <div className='sidebar'>
         <section className='sidebar-nav'>
             <img src={logoSrc} alt="logo" className='logo' />
             <span className='searchAndChat'>
-                <i class="fa-solid fa-magnifying-glass search"></i>
+                <i className="fa-solid fa-magnifying-glass search" onClick={() => setIsSearchOpen(!isSearchOpen)}></i>
                 <i className="fa-solid fa-pen-to-square new-chat" onClick={createNewChat}></i>
             </span>
         </section>  
         <section className='history'>
+            {isSearchOpen && (
+                <div className="search-bar-container">
+                    <input 
+                        type="text" 
+                        placeholder="Search chats..." 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="search-input"
+                        autoFocus
+                    />
+                </div>
+            )}
             <ul>
                 {
-                    allThreads.map((thread, idx) => (
+                    filteredThreads.map((thread, idx) => (
                         <li key={idx} onClick={(e) => showThread(thread.threadId)} className={thread.threadId === currThreadId ? "highlighted" : ""}>
                             <span>{thread.title}</span>
                             <i className="fa-solid fa-trash-can" onClick={(e) => {

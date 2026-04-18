@@ -60,6 +60,33 @@
     transform: scale(1.15);
 }
 
+/* ── Search Bar ── */
+.search-bar-container {
+    padding: 0 16px 12px;
+    animation: slideDown 0.2s ease-out;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--dropdown-border-color);
+    background-color: var(--sidebar-bg-color);
+    color: var(--text-color);
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: var(--text-color);
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 
 /* ── History Section (scrollable, fills remaining space) ── */
 .history {
