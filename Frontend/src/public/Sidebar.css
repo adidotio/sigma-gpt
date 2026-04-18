@@ -1,117 +1,148 @@
-.sidebar{
+/* ── Sidebar Shell ── */
+.sidebar {
     background-color: var(--sidebar-bg-color);
     height: 100vh;
     width: 15vw;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    overflow: hidden;          /* keeps bg from bleeding out */
 }
 
 
-/* Navbar */
-.logo{
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
-    height: fit-content;
-    transition: transform 0.9s ease;
-}
-
-.logo:hover{
-    transform: rotate(90deg);
-}
-
-.new-chat{
-    font-size: 23px;
-    cursor: pointer;
-}
-
-.sidebar-nav{
+/* ── Top Nav ── */
+.sidebar-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 20px;
+    padding: 18px 16px;
+    flex-shrink: 0;            /* never shrink the nav bar */
 }
 
-.search{
-    font-size: 23px;
+.logo {
+    width: auto;
+    height: 28px;
+    cursor: pointer;
+    transition: transform 0.9s ease;
 }
 
-.searchAndChat{
+.logo:hover {
+    transform: rotate(90deg);
+}
+
+.searchAndChat {
     display: flex;
-    gap: 20px;
-}
-
-
-/* Chats */
-.history{
-    height: 90vh;
-    overflow-y: auto;
-    scrollbar-width: none;      /* Firefox */
-    -ms-overflow-style: none;   /* IE/Edge */
-}
-
-.history::-webkit-scrollbar {
-    display: none;              /* Chrome/Safari */
-}
-
-.history ul li{
-    display: flex;
-    justify-content: space-between;
+    gap: 18px;
     align-items: center;
 }
 
-.history ul li i{
+.search {
+    font-size: 20px;
     cursor: pointer;
-    opacity: 0;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
 }
 
-.history ul li span{
-    max-width: 80%;
-    white-space: pre-wrap;
-}
-
-.history ul li{
-    list-style-type: none;
-    /* border: 2px solid white; */
-    height: 25px;
-    width: 95%;
-    margin-left: -25px;
-    padding: 10px;
-    margin-bottom: 15px;
-    font-size: 14px;
-}
-
-.history ul li:hover{
-    background-color: var(--sidebar-hover-bg-color);
-    border: 1px solid var(--sidebar-hover-bg-color);
-    border-radius: 10px;
-}
-
-.history ul li:hover i{
+.search:hover {
     opacity: 1;
 }
 
-.history ul li i:hover{
+.new-chat {
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.new-chat:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+
+/* ── History Section (scrollable, fills remaining space) ── */
+.history {
+    flex: 1;                   /* fill all space between nav and footer */
+    min-height: 0;             /* allows flex child to shrink & scroll */
+    overflow-y: auto;
+    padding: 4px 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.history::-webkit-scrollbar {
+    display: none;
+}
+
+.history ul {
+    padding: 0;
+    margin: 0;
+}
+
+.history ul li {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 12px;
+    margin-bottom: 4px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    height: auto;
+    min-height: 36px;
+}
+
+.history ul li span {
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;   /* neat truncation instead of wrap */
+}
+
+.history ul li i {
+    cursor: pointer;
+    opacity: 0;
+    flex-shrink: 0;
+    font-size: 13px;
+    transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.history ul li:hover {
+    background-color: var(--sidebar-hover-bg-color);
+}
+
+.history ul li:hover i {
+    opacity: 1;
+}
+
+.history ul li i:hover {
     color: var(--delete-chat-color);
 }
 
-.highlighted{
+.highlighted {
     background-color: var(--sidebar-hover-bg-color);
-    border-radius: 10px;
 }
 
-/* Footer */
-.sidebar-footer{
+
+/* ── Footer ── */
+.sidebar-footer {
+    flex-shrink: 0;            /* never squish the footer */
     text-align: center;
-    height: 10vh;
+    padding: 12px 0;
+    font-size: 12px;
+    opacity: 0.55;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    font-size: 15px;
 }
 
-.sidebar-footer hr{
-    width: 80%;
+.sidebar-footer hr {
+    width: 70%;
+    border: none;
+    border-top: 1px solid var(--dropdown-border-color);
+    margin-bottom: 10px;
 }
