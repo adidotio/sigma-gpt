@@ -34,10 +34,26 @@
     margin: 20px;
 }
 
+.search{
+    font-size: 23px;
+}
+
+.searchAndChat{
+    display: flex;
+    gap: 20px;
+}
+
 
 /* Chats */
 .history{
     height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE/Edge */
+}
+
+.history::-webkit-scrollbar {
+    display: none;              /* Chrome/Safari */
 }
 
 .history ul li{

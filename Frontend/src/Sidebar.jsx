@@ -76,8 +76,11 @@ function Sidebar(){
     return <div className='sidebar'>
         <section className='sidebar-nav'>
             <img src={logoSrc} alt="logo" className='logo' />
-            <i className="fa-solid fa-pen-to-square new-chat" onClick={createNewChat}></i>
-        </section>
+            <span className='searchAndChat'>
+                <i class="fa-solid fa-magnifying-glass search"></i>
+                <i className="fa-solid fa-pen-to-square new-chat" onClick={createNewChat}></i>
+            </span>
+        </section>  
         <section className='history'>
             <ul>
                 {

@@ -1,7 +1,7 @@
 *{
     color: var(--text-color);
     font-family: 'Inter', sans-serif;
-    overflow: hidden;
+    box-sizing: border-box;
     transition:
         background-color 0.25s ease,
         color 0.25s ease,
@@ -18,5 +18,7 @@ body{
 .main{
     background-color: var(--bg-color);
     display: flex;
+    height: 100vh;
+    overflow: hidden;
     transition: background-color 0.3s ease;
 }

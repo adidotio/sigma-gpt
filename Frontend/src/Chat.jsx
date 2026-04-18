@@ -1,5 +1,5 @@
 import './public/Chat.css';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { MyContext } from './MyContext.jsx';
 
 // For overall formating : react-markdown
@@ -12,6 +12,8 @@ import 'highlight.js/styles/github-dark.css';
 function Chat() {
   const { newChat, prevChats, reply } = useContext(MyContext);
   let [latestReply, setLatestReply] = useState(null);
+  const bottomRef = useRef(null);
+  const chatsRef = useRef(null);
 
   useEffect(() => {
     if(reply === null){
@@ -33,6 +35,13 @@ function Chat() {
     return () => clearInterval(interval);
 
   }, [reply]);
+
+  // Auto-scroll to bottom on new message or typing update
+  useEffect(() => {
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [prevChats, latestReply]);
 
   return (
     <>
@@ -69,6 +78,7 @@ function Chat() {
                     </div>
                 }
             </div>
+            <div ref={bottomRef} />
         </div>
     </>
   );

@@ -11,18 +11,14 @@
     min-height: 0;
 }
 
-/* Scrollbar (modern, subtle) */
+/* Scrollbar - hidden but functional */
+.chats {
+    -ms-overflow-style: none;   /* IE/Edge */
+    scrollbar-width: none;      /* Firefox */
+}
+
 .chats::-webkit-scrollbar {
-    width: 6px;
-}
-
-.chats::-webkit-scrollbar-thumb {
-    background-color: #3a3a3a;
-    border-radius: 10px;
-}
-
-.chats::-webkit-scrollbar-track {
-    background: transparent;
+    display: none;              /* Chrome/Safari */
 }
 
 /* Message container */
