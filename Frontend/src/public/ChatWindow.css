@@ -99,6 +99,17 @@
 }
 
 
+/* ── Loading Indicator ── */
+.loader-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+
 /* ── Input Section ── */
 .user-area {
     width: 100%;

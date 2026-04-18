@@ -160,7 +160,9 @@ function ChatWindow(){
 
         <Chat></Chat>
 
-        <ScaleLoader color='#fff' loading={loading}></ScaleLoader>
+        <div className="loader-container">
+            <ScaleLoader color='var(--text-color)' loading={loading} height={28} width={3} radius={3} margin={3}></ScaleLoader>
+        </div>
 
         <div className="user-area">
             <div className="user-input">

@@ -57,7 +57,9 @@ function Chat() {
                         {
                             chat.roles === "user" ? 
                             <div className='userMessage'>{chat.content}</div> : 
-                            <ReactMarkdown rehypePlugins={rehypeHighlight}>{chat.content}</ReactMarkdown>
+                            <div className="gptMessage">
+                                <ReactMarkdown rehypePlugins={rehypeHighlight}>{chat.content}</ReactMarkdown>
+                            </div>
                         }
                     </div>
                 )
@@ -81,7 +83,7 @@ function Chat() {
                 </div>
             }
         </div>
-        <div ref={bottomRef} />
+        <div ref={bottomRef} style={{flexShrink: 0, height: "1px"}} />
     </div>
   );
 }

@@ -1,14 +1,16 @@
 /* ── Chat Container (scrollable middle section) ── */
 .chats {
-    width: min(680px, 88%);
-    margin: 0 auto;
+    width: min(720px, 90%);
+    align-self: center;          /* center within stretch parent */
     padding: 24px 0 16px;
     overflow-y: auto;
+    overflow-x: hidden;          /* prevent code blocks from blowing out width */
     display: flex;
     flex-direction: column;
     gap: 18px;
     flex: 1;
     min-height: 0;
+    min-width: 0;
     /* hide scrollbar */
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -40,12 +42,16 @@
     display: flex;
     flex-direction: column;
     gap: 14px;
+    min-width: 0;                /* allow shrinking width wise */
+    flex-shrink: 0;              /* NEVER shrink vertically, force scroll instead */
+    overflow: visible;
 }
 
 /* ── USER MESSAGE (right bubble) ── */
 .userDiv {
     display: flex;
     justify-content: flex-end;
+    min-width: 0;
 }
 
 .userMessage {
@@ -57,6 +63,8 @@
     line-height: 1.5;
     color: var(--text-color);
     word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
     text-align: left;
 }
 
@@ -64,14 +72,20 @@
 .gptDiv {
     display: flex;
     justify-content: flex-start;
+    min-width: 0;                /* shrink below content width horizontally */
+    flex-shrink: 0;              /* don't shrink vertically */
+    overflow: visible;
 }
 
 .gptMessage {
-    max-width: 82%;
+    width: 100%;
+    min-width: 0;
     padding: 2px 0;
     font-size: 14px;
     line-height: 1.65;
     color: var(--text-color);
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* ── Markdown content resets inside GPT messages ── */
@@ -85,16 +99,19 @@
 
 .gptMessage h1 {
     font-size: 18px;
+    font-weight: 700;
     margin: 14px 0 6px;
 }
 
 .gptMessage h2 {
     font-size: 16px;
+    font-weight: 600;
     margin: 12px 0 5px;
 }
 
 .gptMessage h3 {
     font-size: 14px;
+    font-weight: 600;
     margin: 10px 0 4px;
 }
 
@@ -115,10 +132,20 @@
     font-size: 13px;
 }
 
-/* ── Code blocks ── */
+/* ── Code blocks — scroll horizontally, never break layout ── */
+.gptMessage pre {
+    overflow-x: auto;           /* horizontal scroll on wide code */
+    max-width: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: thin;
+}
+
 .hljs {
     border-radius: 12px;
     font-size: 13px;
     padding: 14px 16px !important;
     margin: 8px 0;
+    display: block;             /* enforce block — prevents inline side-by-side */
+    white-space: pre;           /* preserve code formatting but allow horiz scroll */
+    overflow-x: auto;
 }
