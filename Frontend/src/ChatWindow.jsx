@@ -5,7 +5,7 @@ import { useContext, useState, useEffect, useRef } from 'react';
 import {ScaleLoader}  from 'react-spinners';
 
 function ChatWindow(){
-    let {prompt, setPrompt, reply, setReply, currThreadId, prevChats, setPrevChats, setNewChat, theme, toggleTheme, setIsAuth, isAuth, setShowAuth, authChecked} = useContext(MyContext);
+    let {prompt, setPrompt, reply, setReply, currThreadId, prevChats, setPrevChats, setNewChat, theme, toggleTheme, setIsAuth, isAuth, setShowAuth, authChecked, user, setShowProfile} = useContext(MyContext);
     let [loading, setLoading] = useState(false);
     let [isOpen, isSetOpen] = useState(false);
 
@@ -133,7 +133,10 @@ function ChatWindow(){
                     </span>
                 ) : isAuth && (
                     <span className="profile" onClick={handleProfileClick}>
-                    <i className="fa-solid fa-user"></i>
+                        {user?.emoji ? 
+                            <span style={{ fontSize: "1.2rem" }}>{user.emoji}</span> 
+                            : <i className="fa-solid fa-user"></i>
+                        }
                     </span>
                 )}
             </span>
@@ -142,7 +145,7 @@ function ChatWindow(){
         <div>
             {
                 isOpen && <div className="dropdown" ref={dropdownRef}>
-                    <div className="item">
+                    <div className="item" onClick={() => { setShowProfile(true); isSetOpen(false); }}>
                         <i className="fa-solid fa-info"></i>Your Profile
                     </div>
                     <div className="item">

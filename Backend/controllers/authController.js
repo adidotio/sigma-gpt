@@ -13,9 +13,13 @@ export const signup = async (req, res) => {
 
     const hashedPasswd = await bcrypt.hash(password, 10);
 
+    const emojis = ["😀", "😎", "🤓", "😊", "🤩", "🚀", "🐼", "🦊", "🐶", "🐱"];
+    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+
     await User.create({
       email,
-      password: hashedPasswd
+      password: hashedPasswd,
+      emoji: randomEmoji
     });
 
     res.status(201).json({ message: "User created successfully" });
@@ -61,4 +65,52 @@ export const logout = (req, res) => {
 export const checkAuth = async (req, res) => {
   const user = await User.findById(req.userId).select("-password");
   res.json(user);
+};
+
+export const verifyPassword = async (req, res) => {
+  try {
+    const { password } = req.body;
+    const user = await User.findById(req.userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Incorrect password" });
+    }
+
+    res.json({ message: "Password verified" });
+  } catch {
+    res.status(500).json({ message: "Verification failed" });
+  }
+};
+
+export const updateProfile = async (req, res) => {
+  try {
+    const { email, emoji, password } = req.body;
+    const user = await User.findById(req.userId);
+    
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (email) user.email = email;
+    if (emoji) user.emoji = emoji;
+    if (password && password.trim() !== "") {
+      const hashedPasswd = await bcrypt.hash(password, 10);
+      user.password = hashedPasswd;
+    }
+
+    await user.save();
+    
+    // Return updated user without password
+    const updatedUser = await User.findById(req.userId).select("-password");
+    res.json(updatedUser);
+  } catch (err) {
+    if (err.code === 11000) {
+      return res.status(400).json({ message: "Email already in use" });
+    }
+    res.status(500).json({ message: "Update failed" });
+  }
 };

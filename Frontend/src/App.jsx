@@ -7,6 +7,7 @@ import {v1 as uuidv1} from 'uuid';
 import './index.css';
 // import Login from './Login.jsx';
 import Auth from './Auth.jsx';
+import ProfileModal from './ProfileModal.jsx';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   let [isAuth, setIsAuth] = useState(false);
   let [user, setUser] = useState(null);
   let [showAuth, setShowAuth] = useState(false);
+  let [showProfile, setShowProfile] = useState(false);
   let [authChecked, setAuthChecked] = useState(false);
 
   let [prompt, setPrompt] = useState("");
@@ -42,6 +44,7 @@ function App() {
     isAuth, setIsAuth,
     user, setUser,
     showAuth, setShowAuth,
+    showProfile, setShowProfile,
     authChecked, setAuthChecked
   };
 
@@ -84,6 +87,7 @@ function App() {
           <ChatWindow></ChatWindow>
 
           {showAuth && <Auth />}
+          {showProfile && <ProfileModal />}
       </MyContext.Provider>
     </div>
   )

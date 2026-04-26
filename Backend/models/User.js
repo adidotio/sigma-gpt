@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  emoji: {
+    type: String,
+    default: "😀"
   }
 }, { timestamps: true });
 

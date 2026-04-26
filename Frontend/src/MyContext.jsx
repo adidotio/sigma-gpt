@@ -6,5 +6,7 @@ export const MyContext = createContext({
   showAuth: false,
   setShowAuth: () => {},
   user: null,
-  setUser: () => {}
+  setUser: () => {},
+  showProfile: false,
+  setShowProfile: () => {}
 });
