@@ -1,0 +1,153 @@
+.settings-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.settings-modal {
+    background-color: var(--dropdown-bg-color);
+    width: 650px;
+    height: 500px;
+    max-width: 95%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    color: var(--text-color, #ffffff);
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.settings-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.2s;
+}
+
+.settings-close-btn:hover {
+    opacity: 0.7;
+}
+
+/* Sidebar Styling */
+.settings-sidebar {
+    width: 200px;
+    background-color: var(--sidebar-bg-color);
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.settings-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: background-color 0.2s;
+}
+
+.settings-tab i {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.settings-tab:hover {
+    background-color: var(--sidebar-hover-bg-color);
+}
+
+.settings-tab.active {
+    background-color: var(--user-message-bg);
+    font-weight: 500;
+}
+
+/* Content Area Styling */
+.settings-content-wrapper {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.settings-content-wrapper h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--dropdown-border-color);
+}
+
+.settings-row:last-child {
+    border-bottom: none;
+}
+
+.settings-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.settings-label-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.settings-label-desc {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+}
+
+.settings-control select, .settings-control button {
+    background-color: var(--sidebar-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--dropdown-border-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+}
+
+.settings-control select:hover, .settings-control button:hover {
+    opacity: 0.8;
+}
+
+.settings-control select option {
+    background-color: var(--dropdown-bg-color);
+}
+
+/* Specific buttons */
+.btn-danger {
+    color: #ef4444 !important;
+    border-color: #ef4444 !important;
+    background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+.btn-danger:hover {
+    background-color: rgba(239, 68, 68, 0.2) !important;
+}

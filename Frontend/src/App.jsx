@@ -8,6 +8,7 @@ import './index.css';
 // import Login from './Login.jsx';
 import Auth from './Auth.jsx';
 import ProfileModal from './ProfileModal.jsx';
+import SettingsModal from './SettingsModal.jsx';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
   let [user, setUser] = useState(null);
   let [showAuth, setShowAuth] = useState(false);
   let [showProfile, setShowProfile] = useState(false);
+  let [showSettings, setShowSettings] = useState(false);
   let [authChecked, setAuthChecked] = useState(false);
 
   let [prompt, setPrompt] = useState("");
@@ -41,10 +43,12 @@ function App() {
     allThreads, setAllThreads,
     theme,
     toggleTheme,
+    setTheme,
     isAuth, setIsAuth,
     user, setUser,
     showAuth, setShowAuth,
     showProfile, setShowProfile,
+    showSettings, setShowSettings,
     authChecked, setAuthChecked
   };
 
@@ -88,6 +92,7 @@ function App() {
 
           {showAuth && <Auth />}
           {showProfile && <ProfileModal />}
+          {showSettings && <SettingsModal />}
       </MyContext.Provider>
     </div>
   )

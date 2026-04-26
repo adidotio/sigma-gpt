@@ -1,5 +1,5 @@
 import express from "express";
-import { signup, login, logout, checkAuth, verifyPassword, updateProfile } from "../controllers/authController.js";
+import { signup, login, logout, checkAuth, verifyPassword, updateProfile, deleteAccount } from "../controllers/authController.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -10,5 +10,6 @@ router.post("/logout", logout);
 router.get("/me", authMiddleware, checkAuth);
 router.post("/verify-password", authMiddleware, verifyPassword);
 router.put("/profile", authMiddleware, updateProfile);
+router.delete("/profile", authMiddleware, deleteAccount);
 
 export default router;

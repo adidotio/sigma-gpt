@@ -8,5 +8,8 @@ export const MyContext = createContext({
   user: null,
   setUser: () => {},
   showProfile: false,
-  setShowProfile: () => {}
+  setShowProfile: () => {},
+  showSettings: false,
+  setShowSettings: () => {},
+  setTheme: () => {}
 });
